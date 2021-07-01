@@ -37,5 +37,5 @@ docker pull registry.cn-beijing.aliyuncs.com/selfdriveguard/sdg-engine
 
 Run
 ```
-docker-sompose up
+docker-compose up
 ```
