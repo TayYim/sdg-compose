@@ -1,0 +1,34 @@
+services: 
+    simulator:
+        image: registry.cn-beijing.aliyuncs.com/ad-test/carlasim:0.9.10
+        volumes: 
+            - /tmp/.X11-unix:/tmp/.X11-unix
+        environment: 
+            SDL_VIDEODRIVER: x11
+            DISPLAY: 
+        ports:
+            - "2000"
+            - "2001"
+            - "2002"
+        runtime: nvidia
+        command: ./CarlaUE4.sh -opengl -quality-level=low -windowed -ResX=8 -ResY=8
+    engine:
+        image: selfdriveguard/sdg-engine
+        ports: 
+            - "8093:8093"
+            - "8096:8096"
+        environment: 
+            CARLA_SERVER_IP: "simulator"
+            ROS_BRIDGE_IP: "autoware"
+    autoware:
+        image: carla-autoware-sdg:latest
+        volumes: 
+            - ./carla-autoware/autoware-contents:/home/autoware/autoware-contents:ro
+            - ./carla-autoware/scripts:/home/autoware/my_scripts:ro
+        environment: 
+            NVIDIA_VISIBLE_DEVICES: all
+            CARLA_SERVER_IP: "simulator"
+        ports: 
+            - "9090"
+            - "9091"
+        runtime: nvidia
