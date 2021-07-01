@@ -13,7 +13,7 @@ services:
         runtime: nvidia
         command: ./CarlaUE4.sh -opengl -quality-level=low -windowed -ResX=8 -ResY=8
     engine:
-        image: selfdriveguard/sdg-engine
+        image: registry.cn-beijing.aliyuncs.com/selfdriveguard/sdg-engine
         ports: 
             - "8093:8093"
             - "8096:8096"

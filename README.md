@@ -32,7 +32,7 @@ docker pull registry.cn-beijing.aliyuncs.com/ad-test/carlasim:0.9.10
 
 Pull sdg engine image
 ```
-docker pull selfdriveguard/sdg-engine
+docker pull registry.cn-beijing.aliyuncs.com/selfdriveguard/sdg-engine
 ```
 
 Run
