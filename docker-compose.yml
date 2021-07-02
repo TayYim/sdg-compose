@@ -1,17 +1,15 @@
 services: 
     simulator:
         image: registry.cn-beijing.aliyuncs.com/ad-test/carlasim:0.9.10
-        volumes: 
-            - /tmp/.X11-unix:/tmp/.X11-unix
         environment: 
-            SDL_VIDEODRIVER: x11
-            DISPLAY: 
+            SDL_VIDEODRIVER: offscreen
+            DISPLAY: ""
         ports:
             - "2000"
             - "2001"
             - "2002"
         runtime: nvidia
-        command: ./CarlaUE4.sh -opengl -quality-level=low -windowed -ResX=8 -ResY=8
+        command: ./CarlaUE4.sh -opengl -quality-level=low
     engine:
         image: registry.cn-beijing.aliyuncs.com/selfdriveguard/sdg-engine
         ports: 
